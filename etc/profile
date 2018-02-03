@@ -1,0 +1,47 @@
+# set up shell-specific things
+#
+case X$0 in
+X-*)
+    EXINIT="set ai sw=4";			export EXINIT
+    tset -Q ;;
+esac
+
+case X$0 in
+X-*ksh)
+    # Korn shell and friends
+    #
+    set -o vi					# default to the One True Editor
+    alias -x which='whence -p'			# type shortcuts on builtins
+
+    HISTSIZE=400;				export HISTSIZE
+    HISTFILE=$HOME/.history;			export HISTFILE
+    ;;
+X-*bash)
+    # Bash
+    #
+    set -o vi
+    alias which='type -p'
+    HISTSIZE=400;				export HISTSIZE
+    HISTFILE=$HOME/.bashistory;			export HISTFILE
+    ;;
+esac
+
+if [ `whoami` == 'root' ]; then
+    # root has no special environments, in case /etc/pkg.d has been
+    # corrupted.
+    #
+    PS1="$LOGNAME@`hostname`# "
+    PATH=`addpath --before /sbin:/usr/sbin`
+else
+    PS1="$LOGNAME@`hostname`> "
+fi
+
+export PS1 PATH
+
+# load package environments
+#
+if [ "`echo /etc/pkg.d/*.sh`" != '/etc/pkg.d/*.sh' ]; then
+    for x in /etc/pkg.d/*.sh; do
+	. $x
+    done
+fi

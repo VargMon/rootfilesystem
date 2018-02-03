@@ -1,0 +1,27 @@
+# Parameters for the /usr/bin/mtools utilities
+
+#
+# Uncomment these if your boot drive is 1.44 MB, and your second drive
+# is 1.2 MB:
+#
+A /dev/fd0 12 80 2 18  # 1.44 MB first floppy
+A /dev/fd0 12 80 2 9 # low density
+A /dev/fd0 12 0 0 0  # Generic autodetect
+B /dev/fd1 12 80 2 15  # 1.2 MB second floppy
+B /dev/fd1 12 40 2 9 # low density
+B /dev/fd1 12 0 0 0  # Generic autodetect
+
+#
+# Uncomment these if your boot drive is 1.2 MB, and your second drive
+# is 1.44 MB:
+#
+#A /dev/fd0 12 80 2 15  # 1.2 MB first floppy
+#A /dev/fd0 12 40 2 9 # low density
+#A /dev/fd0 12 0 0 0  # Generic autodetect
+#B /dev/fd1 12 80 2 18  # 1.44 MB second floppy
+#B /dev/fd1 12 80 2 9 # low density
+#B /dev/fd1 12 0 0 0  # Generic autodetect
+
+# Using these may be a bad idea from what I hear, so be careful.
+#C /dev/hda1 16 0 0 0
+#D /dev/hda6 16 0 0 0
